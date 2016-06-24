@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Products</title>
+	<meta charset="utf-8" />
+    <script src="scripts/jquery-2.2.3.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            var uri = "api/products";
+
+            $.ajax(uri)
+                .done(function (data) {
+                    
+                    $.each(data, function (key, item) {
+
+                        $('<li>', { text: formatItem(item) }).appendTo($('#products'));
+                    });
+
+                });
+
+        });
+
+            function formatItem(item) {
+                return item.Name + ': $' + item.Price;
+            }
+
+    </script>
+</head>
+<body>
+    <p id="products"></p>
+</body>
+</html>
